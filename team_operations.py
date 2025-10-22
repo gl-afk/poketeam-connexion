@@ -53,4 +53,11 @@ def create_team(body):
     # Restituisci l'oggetto e il codice di stato HTTP
     return response_data, 201
 
-# Aggiungi qui altre funzioni come get_team_by_id, update_team, ecc.
+def get_team_by_id(team_id):
+    team_id = int(team_id)
+    team = TEAMS_DATABASE.get(team_id)
+
+    if team is None:
+        return {"error": "team non trovato"}, 404
+    
+    return team, 200

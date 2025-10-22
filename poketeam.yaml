@@ -26,7 +26,27 @@ paths:
         '400':
           description: Richiesta non valida
 
-
+  /teams/{team_id}:
+    get:
+      summary: Recupera i dati di un team specifico
+      operationId: team_operations.get_team_by_id
+      parameters:
+        - name: team_id
+          in: path
+          required: true
+          description: this is the team's id
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Dettagli del team trovati
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+        "404":
+          description: Team non trovato
+    
 components:
   schemas:
     NewTeamRequest:
