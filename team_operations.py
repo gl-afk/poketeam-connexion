@@ -18,10 +18,10 @@ def create_team(body):
     # 1. Estrai i dati validati da Connexion
     team_name = body.get('name')
     trainer_name = body.get('trainer')
-    pokemon_names = body.get('pokemon_names', [])
+    pokemon_members = body.get('pokemon_members', [])
 
     # 2. Logica di Business
-    if len(pokemon_names) > 6:
+    if len(pokemon_members) > 6:
         # Anche se c'è 'maxItems: 6' nello schema, aggiungiamo una verifica esplicita
         # per logiche più complesse che non possono essere coperte solo dallo schema.
         # Connexion gestisce già la maggior parte degli errori di validazione dello schema.
@@ -34,8 +34,8 @@ def create_team(body):
         "id": team_id,
         "name": team_name,
         "trainer": trainer_name,
-        "pokemon_names": pokemon_names,
-        "members_count": len(pokemon_names)
+        "pokemon_members": pokemon_members,
+        "members_count": len(pokemon_members)
     }
 
     TEAMS_DATABASE[team_id] = new_team

@@ -63,15 +63,12 @@ components:
           type: string
           description: Nome dell'allenatore
           example: Ash
-        pokemon_names:
+        pokemon_members:
           type: array
-          description: Lista dei nomi Pokémon nel team (massimo 6)
+          description: Lista dei Pokemon nel team (con nome e nickname)
           maxItems: 6
           items:
-            type: string
-          example:
-            - bulbasaur
-            - eevee
+            $ref: "#/components/schemas/PokemonInstance"
 
     Team:
       type: object
@@ -90,3 +87,15 @@ components:
           example: 2
           type: integer
           description: Numero attuale di Pokémon nel team
+
+    PokemonInstance:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Nome del Pokémon
+        nickname:
+          type: string
+          description: Nickname scelto dal trainer
